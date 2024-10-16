@@ -17,32 +17,16 @@
 ## Project structure
 ``` 
 │── README.md             # Project description file
-│── M5StickCPlus2_slot    # Source code folder
-  │── M5StickCPlus2_slot.ino   # Source Code Files
-  │── Slot.cpp                 # Slot Function Implementation File
-  │── SLot.h                   # Slot function definition file
-  │── image                    # Image folder
-    │── slot_bar.h                 # esp32 icons
-    │── slot_cherry.h              # Cherry icon
-    │── slot_lemon.h               # lemon icon
-    │── slot_openelab.h            # OpenELAB logo
-    │── slot-orange.h              # Orange icon
-    │── slot_seven.h               # Number 7 icon
-    │── slot_symbols.h             # Icon Data
+│── speed.ino    # 速度检测程序源代码
 ```
 ## Installation and operation
 
 ### precondition
-Software dependency: __Arduino IDE__, __VScode__ or __text__, etc.  
+Software dependency: __Arduino IDE__ etc.  
 
-Hardware requirements: __USB-C cable__, __M5StickCPlus2__, etc.  
+Hardware requirements: __USB-C cable__, __M5StickCPlus2__,__Hall Effect Unit__， etc.  
 
 Dependencies: __M5StickCPlus2 library__, __Arduino library__, etc.  
-
-### Arduino IDE Installation Steps
-```
-Link: upload later
-```
 ### Installation of dependencies
 1、After installing the Arduino IDE, open the settings, paste the M5 development board link into the designated field, and click OK to save the changes.
 ```
