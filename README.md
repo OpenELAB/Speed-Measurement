@@ -49,7 +49,71 @@ https://static-cdn.m5stack.com/resource/arduino/package_m5stack_index.json
 5、Next, install the M5StickCPlus2 library by selecting Tools -> Manage Libraries, searching for "M5StickCPlus2," and clicking Install. If the library is already installed, the installation process will be skipped.
 
 ![QQ_1726106703496](https://github.com/user-attachments/assets/312bc9e1-521c-479e-831a-a3c22e45a6ec)  
+### 原理解释
+1、首先我们拿到Hall Effect Unit知道每当有磁铁靠近输出引脚将会亮起并产生电信号从I处发出
 
+![image](https://github.com/user-attachments/assets/54295e92-9a09-413d-bc22-1f558653af65)  
+![image](https://github.com/user-attachments/assets/4533bdfa-d954-4d9a-abb7-8dd698ec3582)  
+2、首先我们先定义了霍尔传感器电信号的接收引脚
+```
+#define WHEEL_CIRCUMFERENCE 2000  // Tire circumference in mm
+#define HALL_PIN 33  // Hall Sensor Pins
+#define DEBOUNCE_TIME 50  // Dithering time in milliseconds
+
+#define INPUT_PIN 26
+```
+3、初始化Plus 2的显示屏 
+```
+// Initialize M5StickC Plus2
+  M5.begin();
+  
+  // Setting the orientation and font of the display
+  M5.Lcd.setRotation(1);
+  M5.Lcd.setTextSize(4);
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setTextColor(WHITE);
+```
+4、防抖设计、通过对霍尔传感器发出的电信号发出间隔来判断是否重复检测。
+```
+int counter = 0;  // Record the number of tire rotations
+unsigned long lastPulseTime = 0;  // Time of last detected pulse
+unsigned long lastDisplayTime = 0;  // The last time the update was displayed
+unsigned long currentTime = 0;
+
+currentTime = millis();
+  // Read Hall sensor status
+  bool hallState = digitalRead(HALL_PIN);
+
+  // Changes in Hall sensors are detected and jitter has to be filtered out
+  if (hallState == LOW && (currentTime - lastPulseTime > DEBOUNCE_TIME)) {
+    counter++;  // Increased count indicates one tire rotation.
+    lastPulseTime = currentTime;  // Update last pulse time
+  }
+```
+5、获取速度主要在于通过得到时间间隔，以及车轮长度从而计算出速度，呈现在Plus 2的显示屏上
+```
+// Update screen display every 1 second
+  if (currentTime - lastDisplayTime >= 1000) {
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(20, 20);
+    
+    // Calculation of velocity in millimeters per second, converted to meters per second
+    double speed = ((double)counter * (double)WHEEL_CIRCUMFERENCE) / 1000.0;
+    
+    // Create a character buffer to store the formatted speed value
+    char buffer[20];
+    snprintf(buffer, sizeof(buffer), " Speed:     %.2f m/s", speed);
+
+    // Prints formatted speed value to LCD
+    M5.Lcd.print(buffer);
+    
+    // Reset Counter
+    counter = 0;
+    
+    // Update the displayed time
+    lastDisplayTime = currentTime;
+  }
+```
 ### compile and run
 1、首先我们先下载压缩包，下载后解压打开文件speed.ino.
 
@@ -61,34 +125,9 @@ https://static-cdn.m5stack.com/resource/arduino/package_m5stack_index.json
 
 3、Click Compile, and once the compilation is complete, click Upload.
 
-![QQ_1726107957719](https://github.com/user-attachments/assets/c1f953ad-5355-44e8-af0c-ac5da7542aa6)  
+![image](https://github.com/user-attachments/assets/b28d30c5-f0b9-4af2-9723-8935a5390a40)   
 
-## Instructions for use
-- ### Order and number of pictures
-The slot machine has five columns, each capable of holding up to 10 icons, and you can freely adjust their order! 💡 Currently, six 48x48 pixel icons are prepared, with their RGB565 hexadecimal data embedded in the code, corresponding to elements 0 to 5 in the slot_symbols array. To modify the order or number of icons in each column, simply adjust the values in the symbolIndices array to customize the icon display in each column! 🔧🎨 
-
-![QQ_1726108827608](https://github.com/user-attachments/assets/45b5878d-3624-47b5-a671-fc40937d1898)
-
-- ### Column-to-column and figure-to-figure spacing
-By adjusting PAD_X and PAD_Y, you can modify the spacing between columns and icons. The default values are usually set to 2 and 0, respectively.
-
-![QQ_1726109192019](https://github.com/user-attachments/assets/3e14c412-8342-486d-ba00-b6a0f4d357ac)
-
-- ### Turntable rotation speed, stop reduction speed
-```
-#define Speed_MAX 800           //Maximum speed of slot machine rotation
-#define Speed_MIN 50            //Slot machine rotation minimum speed
-#define Acceleration_MAX 12     //Acceleration when the slot machine is accelerating
-#define Acceleration_MIN -20    //The acceleration when the slot machine is slowing down.
-```
-  ![QQ_1726109492610](https://github.com/user-attachments/assets/aaa6b4a0-79b1-491a-8dbd-ca76cc8c1eee)
-
-## Next Issue Preview
-In the next installment, we will provide a detailed guide on how to change the slot machine's images. We will generate the hexadecimal parameters of the images by modeling them and adjusting them to the desired format. Once done, the customized images will be displayed on the slot machine. __Stay tuned!!!__
-
-![QQ_1726122393803](https://github.com/user-attachments/assets/71507de5-dad0-4688-84bf-56cc25878e35)  
-
-[Next Issue Link](https://github.com/OpenELAB/OpenELAB-M5StickCPlus2-Slot-2.git)  
+### 项目展示
 
 ## How to contact the maintainer or developer
 __OpenELAB:__   
