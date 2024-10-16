@@ -125,6 +125,7 @@ currentTime = millis();
 ![image](https://github.com/user-attachments/assets/b28d30c5-f0b9-4af2-9723-8935a5390a40)   
 
 ### Project Showcase
+![Product Showcase](https://github.com/user-attachments/assets/b1353645-4496-4c13-b5b5-62fbdeae6f0d)  
 
 ## How to contact the maintainer or developer
 __OpenELAB:__   
@@ -138,8 +139,5 @@ __FaceBook:__
 __Discord__  
 [![resized_image_150x150](https://github.com/user-attachments/assets/93ecd098-3391-45bb-9d80-b166c197a475)](https://discord.gg/VQspWyck)
 
-## Material Purchase Links
-[M5StickCPlus2](https://openelab.io/products/m5stickcplus2?_pos=2&_sid=d60b08054&_ss=r)  
 
-[USB-C](https://openelab.io/products/usb-a-to-usb-type-c-cable-white?_pos=2&_psq=USB-C&_ss=e&_v=1.0)
 
