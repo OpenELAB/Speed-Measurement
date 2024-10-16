@@ -36,7 +36,7 @@ https://static-cdn.m5stack.com/resource/arduino/package_m5stack_index.json
   
 2、Open Tools->Board->Boards Manager
 
-![QQ_1726105693629](https://github.com/user-attachments/assets/e70b4f19-c21a-4ea5-80e2-4d150b54a35f)  
+![image](https://github.com/user-attachments/assets/dbee7434-4453-462b-a75f-32ac5b8d714c)  
   
 3、Search for M5Stack in the Arduino Library Manager and install it. Since it's already installed on this system, I won’t repeat the installation process.
 
@@ -44,22 +44,20 @@ https://static-cdn.m5stack.com/resource/arduino/package_m5stack_index.json
 
 4、Select development version, Tools->Board->M5Stack Arduino->M5StickCPlus2 
 
-![QQ_1726106317846](https://github.com/user-attachments/assets/203d874b-f316-4ae7-827b-2e01493ce08d)
-
+![image](https://github.com/user-attachments/assets/804770ad-ce05-4d9c-9cec-183462cace63)  
 
 5、Next, install the M5StickCPlus2 library by selecting Tools -> Manage Libraries, searching for "M5StickCPlus2," and clicking Install. If the library is already installed, the installation process will be skipped.
 
 ![QQ_1726106703496](https://github.com/user-attachments/assets/312bc9e1-521c-479e-831a-a3c22e45a6ec)  
 
 ### compile and run
-1、After completing the installation of the dependencies, open the downloaded ZIP archive.
+1、首先我们先下载压缩包，下载后解压打开文件speed.ino.
 
-![QQ_1728369077423](https://github.com/user-attachments/assets/c5a627bb-d95d-43a0-9e1e-1440b4646487)
-
+![image](https://github.com/user-attachments/assets/c44796c7-88c2-4c29-af01-314654969dbb)
 
 2、Connect the Plus2 to your computer using a USB-C cable. Then, go to Tools -> Port and select the correct port.
 
-![QQ_1726107673971](https://github.com/user-attachments/assets/17f0392a-b753-4aba-946c-ede75ba9092f)  
+![image](https://github.com/user-attachments/assets/96a163ba-4613-4bd9-a76b-f56a3f1e7696)  
 
 3、Click Compile, and once the compilation is complete, click Upload.
 
